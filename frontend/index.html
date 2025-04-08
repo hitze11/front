@@ -33,6 +33,39 @@
         margin-bottom: 16px;
       }
 
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+
+      .buttons button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .add-btn {
+        background-color: #10b981;
+        color: white;
+      }
+
+      .delete-btn {
+        background-color: #ef4444;
+        color: white;
+      }
+
+      .add-btn:hover {
+        background-color: #059669;
+      }
+
+      .delete-btn:hover {
+        background-color: #dc2626;
+      }
+
       ul {
         list-style: none;
         padding: 0;
@@ -80,41 +113,6 @@
         font-weight: bold;
         color: #1f2937;
         margin: 4px 0 0;
-      }
-
-      .flyout-btn {
-        background: none;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
-        position: relative;
-      }
-
-      .flyout {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 100%;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 8px;
-      }
-
-      .flyout ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .flyout li {
-        padding: 8px;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      .flyout li:hover {
-        background-color: #f1f5f9;
       }
 
       /* Modal Styles */
@@ -187,6 +185,10 @@
   <body>
     <div class="container">
       <h3>Ronnys Notes App</h3>
+      <div class="buttons">
+        <button class="add-btn" onclick="openModal()">Add Note</button>
+        <button class="delete-btn" onclick="deleteAllNotes()">Delete All Notes</button>
+      </div>
       <ul id="notes">
         <li>
           <div class="date-box">
@@ -197,28 +199,56 @@
             <h3>Ronny Stieber</h3>
             <p>Hier ist die Note APP auf Azure</p>
           </div>
-          <div class="relative">
-            <button class="flyout-btn">...</button>
-            <div class="flyout">
-              <ul>
-                <li>Edit</li>
-                <li>Delete</li>
-              </ul>
-            </div>
-          </div>
         </li>
       </ul>
     </div>
     <div id="modal">
-      <form id="form">
+      <form id="form" onsubmit="addNote(event)">
         <h4>Add a Note</h4>
-        <input type="text" id="note" placeholder="Enter your note" />
-        <input type="text" id="author" placeholder="Enter your name" />
+        <input type="text" id="note" placeholder="Enter your note" required />
+        <input type="text" id="author" placeholder="Enter your name" required />
         <div class="buttons">
           <button type="submit" id="submit">Add Note</button>
-          <button type="reset" id="dismiss">Dismiss</button>
+          <button type="button" id="dismiss" onclick="closeModal()">Dismiss</button>
         </div>
       </form>
     </div>
+    <script>
+      const modal = document.getElementById("modal");
+
+      function openModal() {
+        modal.style.display = "flex";
+      }
+
+      function closeModal() {
+        modal.style.display = "none";
+      }
+
+      function addNote(event) {
+        event.preventDefault();
+        const note = document.getElementById("note").value;
+        const author = document.getElementById("author").value;
+
+        const notesList = document.getElementById("notes");
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div class="date-box">
+            <span>${new Date().getDate()}</span>
+            <span>${new Date().toLocaleString("default", { month: "long" })}</span>
+          </div>
+          <div class="note-content">
+            <h3>${author}</h3>
+            <p>${note}</p>
+          </div>
+        `;
+        notesList.appendChild(li);
+        closeModal();
+      }
+
+      function deleteAllNotes() {
+        const notesList = document.getElementById("notes");
+        notesList.innerHTML = "";
+      }
+    </script>
   </body>
 </html>
