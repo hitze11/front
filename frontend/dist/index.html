@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script type="module" crossorigin src="/assets/index-BFc8DGpr.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BGSkJNDp.css">
+  </head>
+
+  <body
+    class="flex min-h-screen items-center justify-center bg-gray-100 font-sans text-gray-900">
+    <div class="relative w-1/2 rounded-lg bg-slate-200 p-4 pb-24 shadow-lg">
+      <a
+        href="#"
+        id="add"
+        class="absolute bottom-4 right-4 flex size-16 items-center justify-center rounded-full bg-red-500 p-4 text-white shadow-lg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      </a>
+      <h3 class="mb-8 text-center font-sans text-3xl font-semibold">
+        Notes App
+      </h3>
+      <!-- <ul id="notes">No Notes yet!</ul> -->
+      <ul id="notes">
+        <li class="my-2 mb-4 flex gap-4 rounded-lg bg-slate-100 p-4 shadow-lg">
+          <div
+            class="flex max-h-16 flex-col items-center rounded-lg bg-slate-500 p-2 text-white">
+            <span class="text-2xl leading-6">16</span>
+            <span class="text-sm">Januar</span>
+          </div>
+          <div>
+            <h3 class="text-xs text-slate-700">Max Mustermann</h3>
+            <p class="font-semibold text-gray-800">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptate pariatur quae molestias maiores voluptatibus,
+              consectetur ex atque ea blanditiis impedit sint id quisquam, unde
+              nostrum repudiandae, ab ullam perspiciatis beatae?
+            </p>
+          </div>
+          <div class="relative">
+            <button class="flyout-btn">...</button>
+            <div class="flyout absolute right-6 top-0 hidden">
+              <ul class="flex flex-col gap-2 rounded-lg bg-white p-2 shadow-lg">
+                <li class="rounded-lg p-2 hover:bg-gray-100">Edit</li>
+                <li class="rounded-lg p-2 hover:bg-gray-100">Delete</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="absolute flex hidden min-h-screen w-full items-center justify-center bg-gray-900 bg-opacity-50 backdrop-blur-sm"
+      id="modal">
+      <form
+        id="form"
+        class="flex w-1/4 flex-col gap-4 rounded-lg border bg-slate-200 p-4 shadow-lg">
+        <h4 class="mb-4 text-center text-xl font-semibold">Add a Note</h4>
+        <input
+          type="text"
+          id="note"
+          placeholder="Enter your note"
+          class="rounded-md border p-2" />
+        <input
+          type="text"
+          id="author"
+          placeholder="Enter your name"
+          class="p-2" />
+        <div class="flex items-center justify-center gap-4">
+          <button
+            type="submit"
+            id="submit"
+            class="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold uppercase text-white">
+            Add Note
+          </button>
+          <button
+            type="reset"
+            id="dismiss"
+            class="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold uppercase text-white">
+            dismiss
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
